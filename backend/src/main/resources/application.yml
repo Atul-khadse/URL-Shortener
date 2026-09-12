@@ -1,3 +1,4 @@
+
 server:
   port: 8080
   max-http-header-size: 16384
@@ -6,7 +7,6 @@ spring:
   application:
     name: url-shortener-api
   datasource:
-    # Notice we changed the syntax to clean, safe environment variable structures
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
@@ -30,6 +30,63 @@ spring:
 jwt:
   secret: ${JWT_SECRET}
   expiration-ms: 86400000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+#server:
+#  port: 8080
+#  max-http-header-size: 16384
+#
+#spring:
+#  application:
+#    name: url-shortener-api
+#  datasource:
+#    # Notice we changed the syntax to clean, safe environment variable structures
+#    url: ${SPRING_DATASOURCE_URL}
+#    username: ${SPRING_DATASOURCE_USERNAME}
+#    password: ${SPRING_DATASOURCE_PASSWORD}
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 5
+#      idle-timeout: 30000
+#      pool-name: ShortenerHikariCP
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: false
+#  flyway:
+#    enabled: false
+#  data:
+#    redis:
+#      url: ${SPRING_REDIS_URL}
+#      timeout: 2000ms
+#
+#jwt:
+#  secret: ${JWT_SECRET}
+#  expiration-ms: 86400000
 
 
 
