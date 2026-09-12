@@ -6,10 +6,10 @@ spring:
   application:
     name: url-shortener-api
   datasource:
-    # Safe placeholders that pull secretly from Render's dashboard environment variables
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/url_shortener_db}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:pass}
+    # Notice we changed the syntax to clean, safe environment variable structures
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -18,23 +18,77 @@ spring:
       pool-name: ShortenerHikariCP
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-        dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     enabled: false
   data:
     redis:
-      # Links smoothly to your free Render Key-Value Redis cluster
-      url: ${SPRING_REDIS_URL:redis://localhost:6379}
+      url: ${SPRING_REDIS_URL}
       timeout: 2000ms
 
 jwt:
-  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  secret: ${JWT_SECRET}
   expiration-ms: 86400000
 
-app:
-  base-url: http://localhost:8080
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+#
+#
+#server:
+#  port: 8080
+#  max-http-header-size: 16384
+#
+#spring:
+#  application:
+#    name: url-shortener-api
+#  datasource:
+#    # Safe placeholders that pull secretly from Render's dashboard environment variables
+#    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/url_shortener_db}
+#    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+#    password: ${SPRING_DATASOURCE_PASSWORD:pass}
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      maximum-pool-size: 10
+#      minimum-idle: 5
+#      idle-timeout: 30000
+#      pool-name: ShortenerHikariCP
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        format_sql: false
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#  flyway:
+#    enabled: false
+#  data:
+#    redis:
+#      # Links smoothly to your free Render Key-Value Redis cluster
+#      url: ${SPRING_REDIS_URL:redis://localhost:6379}
+#      timeout: 2000ms
+#
+#jwt:
+#  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+#  expiration-ms: 86400000
+#
+#app:
+#  base-url: http://localhost:8080
