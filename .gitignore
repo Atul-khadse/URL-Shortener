@@ -1,0 +1,14 @@
+# Backend exclusions
+backend/target/
+backend/.mvn/
+backend/*.jar
+
+# Frontend exclusions
+frontend/node_modules/
+frontend/dist/
+frontend/.env*
+
+# IDE and system files
+.idea/
+.DS_Store
+*.log
