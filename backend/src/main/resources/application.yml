@@ -128,8 +128,8 @@ spring:
   #  url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/url_shortener_db}
   #  url: jdbc:postgresql://db_user:WnKf5mzJULP4VyFkGbXz4oJdvcy3z4Eu@dpg-daijcrfqj5pc73ac2960-a/url_shortener_db_7bqo
   url: jdbc:postgresql://://render.com
-   username: ${SPRING_DATASOURCE_USERNAME:postgres}
-   password: ${SPRING_DATASOURCE_PASSWORD:pass}
+  username: ${SPRING_DATASOURCE_USERNAME:postgres}
+  password: ${SPRING_DATASOURCE_PASSWORD:pass}
    driver-class-name: org.postgresql.Driver
  jpa:
    hibernate:
