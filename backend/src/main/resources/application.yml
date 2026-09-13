@@ -1,4 +1,3 @@
-#
 #server:
 #  port: 8080
 #  max-http-header-size: 16384
@@ -7,9 +6,10 @@
 #  application:
 #    name: url-shortener-api
 #  datasource:
-#    url: ${SPRING_DATASOURCE_URL}
-#    username: ${SPRING_DATASOURCE_USERNAME}
-#    password: ${SPRING_DATASOURCE_PASSWORD}
+#    # 🌟 Cleaned out the 'user:pass@' inline text syntax out of the link layout!
+#    url: jdbc:postgresql://dpg-daijcrfqj5pc73ac2960-a.oregon-postgres.render.com/url_shortener_db_7bqo
+#    username: db_user
+#    password: WnKf5mzJULP4VyFkGbXz4oJdvcy3z4Eu
 #    driver-class-name: org.postgresql.Driver
 #    hikari:
 #      maximum-pool-size: 10
@@ -20,18 +20,25 @@
 #    hibernate:
 #      ddl-auto: update
 #    show-sql: false
+#    properties:
+#      hibernate:
+#        format_sql: false
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
 #  flyway:
 #    enabled: false
 #  data:
 #    redis:
-#      url: ${SPRING_REDIS_URL}
+#      url: redis://localhost:6379
 #      timeout: 2000ms
 #
 #jwt:
-#  secret: ${JWT_SECRET}
+#  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
 #  expiration-ms: 86400000
 #
-
+#
+#app:
+#  base-url: http://localhost:8080
+#
 
 
 
@@ -110,36 +117,37 @@
 
 
 server:
-  port: 8080
-  max-http-header-size: 16384
+ port: 8080
+ max-http-header-size: 16384
 
 spring:
-  application:
-    name: url-shortener-api
-  datasource:
-    # Safe placeholders that pull secretly from Render's dashboard environment variables
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/url_shortener_db}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:pass}
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: validate
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect # Explicit dialect definition
-    flyway:
-      enabled: true
-      baseline-on-migrate: true
-  data:
-    redis:
-      # Links smoothly to your free Render Key-Value Redis cluster
-      url: ${SPRING_REDIS_URL:redis://localhost:6379}
-      timeout: 2000ms
+ application:
+   name: url-shortener-api
+ datasource:
+   # Safe placeholders that pull secretly from Render's dashboard environment variables
+  #  url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/url_shortener_db}
+   url: jdbc:postgresql://dpg-daijcrfqj5pc73ac2960-a.oregon-postgres.render.com/url_shortener_db_7bqo
+   username: ${SPRING_DATASOURCE_USERNAME:postgres}
+   password: ${SPRING_DATASOURCE_PASSWORD:pass}
+   driver-class-name: org.postgresql.Driver
+ jpa:
+   hibernate:
+     ddl-auto: validate
+   properties:
+     hibernate:
+       dialect: org.hibernate.dialect.PostgreSQLDialect # Explicit dialect definition
+   flyway:
+     enabled: true
+     baseline-on-migrate: true
+ data:
+   redis:
+     # Links smoothly to your free Render Key-Value Redis cluster
+     url: ${SPRING_REDIS_URL:redis://localhost:6379}
+     timeout: 2000ms
 
 jwt:
-  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
-  expiration-ms: 86400000
+ secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+ expiration-ms: 86400000
 
 app:
-  base-url: http://localhost:8080
+ base-url: http://localhost:8080
