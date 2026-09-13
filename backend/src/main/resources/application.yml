@@ -118,37 +118,91 @@
 
 
 
+# server:
+#  port: 8080
+#  max-http-header-size: 16384
+
+# spring:
+#  application:
+#    name: url-shortener-api
+#  datasource:
+#    # Safe placeholders that pull secretly from Render's dashboard environment variables
+#   url: jdbc:postgresql://://render.com
+#   username: ${SPRING_DATASOURCE_USERNAME:postgres}
+#   password: ${SPRING_DATASOURCE_PASSWORD:pass}
+#   driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: validate
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect # Explicit dialect definition
+#    flyway:
+#      enabled: true
+#      baseline-on-migrate: true
+#  data:
+#    redis:
+#      # Links smoothly to your free Render Key-Value Redis cluster
+#      url: ${SPRING_REDIS_URL:redis://localhost:6379}
+#      timeout: 2000ms
+
+# jwt:
+#  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+#  expiration-ms: 86400000
+
+# app:
+#  base-url: http://localhost:8080
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Deployment Infrastructure Signature: CLOUD_RUN_PROD_V2
 server:
- port: 8080
- max-http-header-size: 16384
+  port: 8080
+  max-http-header-size: 16384
 
 spring:
- application:
-   name: url-shortener-api
- datasource:
-   # Safe placeholders that pull secretly from Render's dashboard environment variables
-  url: jdbc:postgresql://://render.com
-  username: ${SPRING_DATASOURCE_USERNAME:postgres}
-  password: ${SPRING_DATASOURCE_PASSWORD:pass}
-  driver-class-name: org.postgresql.Driver
- jpa:
-   hibernate:
-     ddl-auto: validate
-   properties:
-     hibernate:
-       dialect: org.hibernate.dialect.PostgreSQLDialect # Explicit dialect definition
-   flyway:
-     enabled: true
-     baseline-on-migrate: true
- data:
-   redis:
-     # Links smoothly to your free Render Key-Value Redis cluster
-     url: ${SPRING_REDIS_URL:redis://localhost:6379}
-     timeout: 2000ms
+  application:
+    name: url-shortener-api
+  datasource:
+    url: jdbc:postgresql://://render.com
+    username: db_user
+    password: WnKf5mzJULP4VyFkGbXz4oJdvcy3z4Eu
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      pool-name: ShortenerHikariCP
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: false
+  data:
+    redis:
+      url: ${SPRING_REDIS_URL:redis://localhost:6379}
+      timeout: 2000ms
 
 jwt:
- secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
- expiration-ms: 86400000
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expiration-ms: 86400000
 
 app:
- base-url: http://localhost:8080
+  base-url: http://localhost:8080
