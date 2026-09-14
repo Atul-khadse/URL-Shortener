@@ -173,7 +173,7 @@ spring:
     name: url-shortener-api
   datasource:
     # 🌟 FIXED: The broken link is completely gone. This is your real cloud database path:
-    url: jdbc:postgresql://://render.com
+    url: postgresql://db_user:WnKf5mzJULP4VyFkGbXz4oJdvcy3z4Eu@dpg-daijcrfqj5pc73ac2960-a.oregon-postgres.render.com/url_shortener_db_7bqo
     username: db_user
     password: WnKf5mzJULP4VyFkGbXz4oJdvcy3z4Eu
     driver-class-name: org.postgresql.Driver
