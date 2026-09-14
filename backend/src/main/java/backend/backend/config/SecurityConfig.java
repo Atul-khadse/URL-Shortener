@@ -53,8 +53,8 @@ public class SecurityConfig {
        config.setAllowedOrigins(List.of(
                 "http://localhost:5173", 
                 "http://localhost:3000",
-                "https://vercel.app",
-                "https://url-shortener-bice-iota.vercel.app"
+                "https://url-shortener-bice-iota.vercel.app",
+                "https://*-pankajkhadse131-1264.vercel.app"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
