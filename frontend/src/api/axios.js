@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+const rawBaseUrl = import.meta.env.VITE_API_BASE_URL || 'https://url-backend-mljr.onrender.com';
+// Ensures the base URL always ends with /api/v1 without double slashes
+const normalizedBaseUrl = rawBaseUrl.replace(/\/+$/, '');
+const baseURL = normalizedBaseUrl.endsWith('/api/v1') 
+    ? normalizedBaseUrl 
+    : `${normalizedBaseUrl}/api/v1`;
+
 const api = axios.create({
-  // baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1' || 'https://url-backend-mljr.onrender.com',
-   baseURL: import.meta.env.VITE_API_BASE_URL || 'https://url-backend-mljr.onrender.com',
+  baseURL: baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
